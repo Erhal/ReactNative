@@ -16,13 +16,13 @@ export const Screens: IScreen[] = [
     {
         name: "FeedsScreen",
         component: FeedsScreen,
-        icon: <AntDesign name="home" size={24} color="#fff"/>,
+        icon: <AntDesign name="home" size={20} color="#fff"/>,
         title: "Feeds",
     },
     {
         name: "ProfileScreen",
         component: ProfileScreen,
-        icon: <MaterialIcons name="account-circle" size={24} color="#fff"/>,
+        icon: <MaterialIcons name="account-circle" size={20} color="#fff"/>,
         title: "Profile",
     },
 ];
