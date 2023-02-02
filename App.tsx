@@ -6,11 +6,7 @@ import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import FeedsScreen from "./src/screens/FeedsScreen";
-import ProfileScreen from "./src/screens/ProfileScreen";
-
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialIcons } from '@expo/vector-icons';
+import { Screens } from "./src/screens";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -32,30 +28,21 @@ export default function App() {
                             backgroundColor: "blue",
                         },
                     }}>
-                        <Tab.Screen
-                            name="FEEDS"
-                            component={FeedsScreen}
-                            options={{
-                                tabBarLabel: () => (
-                                    <View style={{flexDirection: "row", alignItems: "center"}}>
-                                        <AntDesign name="home" size={24} color="#fff"/>
-                                        <Text style={{color: "#fff", marginLeft: 5}}>Home</Text>
-                                    </View>
-                                ),
-                            }}
-                        />
-                        <Tab.Screen
-                            name="PROFILE"
-                            component={ProfileScreen}
-                            options={{
-                                tabBarLabel: () => (
-                                    <View style={{flexDirection: "row", alignItems: "center"}}>
-                                        <MaterialIcons name="account-circle" size={24} color="#fff" />
-                                        <Text style={{color: "#fff", marginLeft: 5}}>Home</Text>
-                                    </View>
-                                ),
-                            }}
-                        />
+                        {Screens.map((screen) => (
+                            <Tab.Screen
+                                key={screen.name}
+                                name={screen.name}
+                                component={screen.component}
+                                options={{
+                                    tabBarLabel: () => (
+                                        <View style={{flexDirection: "row", alignItems: "center"}}>
+                                            {screen.icon}
+                                            <Text style={{color: "#fff", marginLeft: 5}}>{screen.title}</Text>
+                                        </View>
+                                    ),
+                                }}
+                            />
+                        ))}
                     </Tab.Navigator>
                 </NavigationContainer>
             </SafeAreaView>
