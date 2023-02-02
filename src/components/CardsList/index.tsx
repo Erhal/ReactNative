@@ -50,7 +50,7 @@ const CardsList: FC = () => {
       }
       onScroll={({ nativeEvent }) => {
         const { contentOffset, contentSize, layoutMeasurement } = nativeEvent;
-        if (isSuccess && !isMorePicsLoading && (contentOffset.y >= contentSize.height - layoutMeasurement.height)) {
+        if (isSuccess && !isMorePicsLoading && (contentOffset.y >= contentSize.height - layoutMeasurement.height -100)) {
           handleLoadMore();
         }
       }}
