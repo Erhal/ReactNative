@@ -1,7 +1,7 @@
-import { RefreshControl, ScrollView } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { FC, useCallback, useEffect, useState } from 'react';
 
-import { useGetStartPicsQuery, useGetMorePicsMutation } from '../../store/api/pics';
+import { useGetMorePicsMutation, useGetStartPicsQuery } from '../../store/api/pics';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { refreshPics } from '../../store/slices/pics';
 
@@ -44,7 +44,7 @@ const CardsList: FC = () => {
   }, [ isSuccess, isMorePicsLoading ]);
 
   return (
-    <ScrollView
+    <FlatList
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={'#fff'} />
       }
@@ -55,11 +55,11 @@ const CardsList: FC = () => {
         }
       }}
       scrollEventThrottle={1000}
-    >
-      {isSuccess && pics?.map((item) => {
-        return <CardItem imageURL={item.download_url} author={item.author} key={item.id} />;
-      })}
-    </ScrollView>
+      data={pics}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <CardItem imageURL={item.download_url} author={item.author}/>
+      )} />
   );
 };
 
