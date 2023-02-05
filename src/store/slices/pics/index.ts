@@ -13,7 +13,7 @@ const initialState: IPicsState = {
 };
 
 export const picsSlice = createSlice({
-    name: "companies",
+    name: "pics",
     initialState,
     reducers: {
         refreshPics: state => {
